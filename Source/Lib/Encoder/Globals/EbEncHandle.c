@@ -3344,8 +3344,8 @@ static void derive_vq_params(SequenceControlSet* scs) {
         vq_ctrl->sharpness_ctrls.tf               = 1;
         vq_ctrl->sharpness_ctrls.unipred_bias     = 1;
         vq_ctrl->sharpness_ctrls.ifs              = 1;
-        vq_ctrl->sharpness_ctrls.cdef             = 0;
-        vq_ctrl->sharpness_ctrls.restoration      = 0;
+        vq_ctrl->sharpness_ctrls.cdef             = 1;
+        vq_ctrl->sharpness_ctrls.restoration      = 1;
         vq_ctrl->sharpness_ctrls.rdoq             = 1;
         // Stability
         vq_ctrl->stability_ctrls.depth_refinement = 1;
