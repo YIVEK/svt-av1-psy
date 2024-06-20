@@ -1511,15 +1511,15 @@ static uint8_t get_dlf_level(EncMode enc_mode, uint8_t is_not_last_layer, Bool f
     if (rtc_tune) {
         if (sc_class1) {
             if (enc_mode <= ENC_M10)
-                dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 3 : (is_not_last_layer ? 4 : 0);
+                dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 2 : (is_not_last_layer ? 2 : 2);
             else
-                dlf_level = is_not_last_layer ? 5 : 0;
+                dlf_level = is_not_last_layer ? 2 : 2;
         } else if (enc_mode <= ENC_M9)
-            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 3 : (is_not_last_layer ? 3 : 5);
+            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 2 : (is_not_last_layer ? 2 : 2);
         else if (enc_mode <= ENC_M11)
-            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 3 : (is_not_last_layer ? 4 : 0);
+            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 2 : (is_not_last_layer ? 2 : 2);
         else
-            dlf_level = is_not_last_layer ? 5 : 0;
+            dlf_level = is_not_last_layer ? 2 : 2;
     }
     // Don't disable DLF for low resolutions when fast-decode is used
     else if (fast_decode == 0 || resolution <= INPUT_SIZE_360p_RANGE) {
@@ -1528,24 +1528,24 @@ static uint8_t get_dlf_level(EncMode enc_mode, uint8_t is_not_last_layer, Bool f
         else if (enc_mode <= ENC_M5) {
             dlf_level = 2;
         } else if (enc_mode <= ENC_M9)
-            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 3 : (is_not_last_layer ? 3 : 5);
+            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 2 : (is_not_last_layer ? 2 : 2);
         else if (enc_mode <= ENC_M10)
-            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 3 : (is_not_last_layer ? 4 : 0);
+            dlf_level = resolution <= INPUT_SIZE_360p_RANGE ? 2 : (is_not_last_layer ? 2 : 2);
         else if (enc_mode <= ENC_M11)
             if (resolution <= INPUT_SIZE_360p_RANGE) {
                 if (qp < 30)
-                    dlf_level = is_base ? 4 : 0;
+                    dlf_level = is_base ? 2 : 2;
                 else if (qp < 40)
-                    dlf_level = is_base ? 3 : is_not_last_layer ? 5 : 0;
+                    dlf_level = is_base ? 2 : is_not_last_layer ? 2 : 2;
                 else
-                    dlf_level = is_base ? 3 : is_not_last_layer ? 4 : 5;
+                    dlf_level = is_base ? 2 : is_not_last_layer ? 2 : 2;
             } else {
-                dlf_level = is_not_last_layer ? 4 : 0;
+                dlf_level = is_not_last_layer ? 2 : 2;
             }
         else if (qp < 40)
-            dlf_level = is_base ? 5 : 0;
+            dlf_level = is_base ? 2 : 2;
         else
-            dlf_level = is_base ? 3 : is_not_last_layer ? 5 : 0;
+            dlf_level = is_base ? 2 : is_not_last_layer ? 2 : 2;
     } else {
         if (enc_mode <= ENC_M7)
 #if OPT_FAST_DECODE_LVLS // dlf
@@ -1553,17 +1553,17 @@ static uint8_t get_dlf_level(EncMode enc_mode, uint8_t is_not_last_layer, Bool f
             switch (fast_decode) {
             case -1:
             case 0:
-            case 1: dlf_level = is_base ? 3 : 4; break;
-            case 2: dlf_level = is_base ? 3 : 5; break;
-            case 3: dlf_level = is_base ? 3 : is_not_last_layer ? 5 : 0; break;
-            default: dlf_level = is_base ? 3 : 4; break;
+            case 1: dlf_level = is_base ? 2 : 2; break;
+            case 2: dlf_level = is_base ? 2 : 2; break;
+            case 3: dlf_level = is_base ? 2 : is_not_last_layer ? 2 : 2; break;
+            default: dlf_level = is_base ? 2 : 2; break;
             }
         }
 #else
-            dlf_level = is_base ? 3 : 4;
+            dlf_level = is_base ? 2 : 2;
 #endif
         else
-            dlf_level = is_base ? 3 : is_not_last_layer ? 5 : 0;
+            dlf_level = is_base ? 2 : is_not_last_layer ? 2 : 2;
     }
     return dlf_level;
 }
