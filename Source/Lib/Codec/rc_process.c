@@ -1469,7 +1469,7 @@ static int av1_get_deltaq_sb_variance_boost(uint8_t base_q_idx, uint16_t *varian
 
     // Modify the boost by adding an offset if octile == 1
     if (octile == 1) {
-        int offset = 40; // Define an offset, you can adjust this value as needed
+        int offset = -80; // Define an offset, you can adjust this value as needed
         boost += offset; // Add the offset to the boost
     }
 
