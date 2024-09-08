@@ -1467,6 +1467,13 @@ static int av1_get_deltaq_sb_variance_boost(uint8_t base_q_idx, uint16_t *varian
     int32_t target_q = (int32_t)(base_q / qstep_ratio);
     int32_t boost = (int32_t)((base_q_idx + 40) * -svt_av1_compute_qdelta_fp(base_q, target_q, bit_depth) / (255 + 40));
 
+    // Modify the boost by adding an offset if octile == 1
+    if (octile == 1) {
+        int offset = 10; // Define an offset, you can adjust this value as needed
+        boost += offset; // Add the offset to the boost
+    }
+
+    // Ensure that the boost does not exceed the maximum range
     boost = AOMMIN(VAR_BOOST_MAX_DELTAQ_RANGE, boost);
 
 #if DEBUG_VAR_BOOST
