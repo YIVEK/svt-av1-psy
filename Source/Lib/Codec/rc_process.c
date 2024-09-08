@@ -1536,7 +1536,7 @@ void svt_variance_adjust_qp(PictureControlSet *pcs, bool readjust_base_q_idx) {
         // We'll do it after adjusting frame qp to maximize deltaq frame range
         int offset = 0;
         if (scs->static_config.variance_octile == 1) {
-            offset = 52; // Example offset value; adjust as needed
+            offset = 60; // Example offset value; adjust as needed
         }
 
         sb_ptr->qindex = CLIP3(1, // q_index 0 is lossless, and is currently not supported in SVT-AV1
