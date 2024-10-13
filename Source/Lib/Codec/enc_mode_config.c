@@ -9140,7 +9140,7 @@ void svt_aom_sig_deriv_mode_decision_config(SequenceControlSet *scs, PictureCont
             dlf_enc_mode = AOMMAX(ENC_MRS, enc_mode - 3);
         }
 
-        dlf_level = 2
+        dlf_level = 2;
     }
     svt_aom_set_dlf_controls(pcs->ppcs, dlf_level);
 }
